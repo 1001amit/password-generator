@@ -52,6 +52,7 @@ function generatePassword() {
     password = password.split('').sort(() => Math.random() - 0.5).join('');
 
     document.getElementById('result').value = password;
+    updateStrengthMeter(password);
 }
 
 function copyToClipboard() {
@@ -59,5 +60,23 @@ function copyToClipboard() {
     resultInput.select();
     document.execCommand('copy');
     alert('Password copied to clipboard');
+}
+
+function updateStrengthMeter(password) {
+    const strengthMeter = document.getElementById('strength');
+    let strength = 0;
+    const lengthCriteria = password.length >= 12;
+    const uppercaseCriteria = /[A-Z]/.test(password);
+    const lowercaseCriteria = /[a-z]/.test(password);
+    const numberCriteria = /[0-9]/.test(password);
+    const specialCriteria = /[!@#$%^&*()_+[\]{}|;:,.<>?]/.test(password);
+
+    if (lengthCriteria) strength++;
+    if (uppercaseCriteria) strength++;
+    if (lowercaseCriteria) strength++;
+    if (numberCriteria) strength++;
+    if (specialCriteria) strength++;
+
+    strengthMeter.value = strength;
 }
 

@@ -7,24 +7,28 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container" role="main">
         <h1>Password Generator</h1>
         <form id="passwordForm">
             <label for="length">Password Length:</label>
-            <input type="number" id="length" name="length" min="4" max="32" value="12" title="Select password length between 4 and 32">
+            <input type="number" id="length" name="length" min="4" max="32" value="12" title="Select password length between 4 and 32" aria-label="Password Length">
             
             <div class="options">
-                <label title="Include uppercase letters in the password"><input type="checkbox" id="uppercase" checked> Include Uppercase Letters</label>
-                <label title="Include lowercase letters in the password"><input type="checkbox" id="lowercase" checked> Include Lowercase Letters</label>
-                <label title="Include numbers in the password"><input type="checkbox" id="numbers" checked> Include Numbers</label>
-                <label title="Include special characters in the password"><input type="checkbox" id="special" checked> Include Special Characters</label>
+                <label title="Include uppercase letters in the password"><input type="checkbox" id="uppercase" checked aria-checked="true"> Include Uppercase Letters</label>
+                <label title="Include lowercase letters in the password"><input type="checkbox" id="lowercase" checked aria-checked="true"> Include Lowercase Letters</label>
+                <label title="Include numbers in the password"><input type="checkbox" id="numbers" checked aria-checked="true"> Include Numbers</label>
+                <label title="Include special characters in the password"><input type="checkbox" id="special" checked aria-checked="true"> Include Special Characters</label>
             </div>
             
-            <button type="button" id="generateBtn">Generate Password</button>
+            <button type="button" id="generateBtn" aria-label="Generate Password">Generate Password</button>
         </form>
         <div id="resultContainer">
-            <input type="text" id="result" readonly title="Generated password will appear here">
-            <button id="copyBtn">Copy to Clipboard</button>
+            <input type="text" id="result" readonly title="Generated password will appear here" aria-label="Generated Password">
+            <button id="copyBtn" aria-label="Copy Password to Clipboard">Copy to Clipboard</button>
+        </div>
+        <div id="strengthContainer">
+            <label for="strength">Password Strength:</label>
+            <meter id="strength" min="0" max="5" value="0" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" aria-label="Password Strength"></meter>
         </div>
     </div>
     <script src="script.js"></script>
