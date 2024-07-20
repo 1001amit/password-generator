@@ -12,7 +12,6 @@ function generatePassword() {
     const includeNumbers = document.getElementById('numbers').checked;
     const includeSpecial = document.getElementById('special').checked;
 
-    const customUppercase = document.getElementById('customUppercase').value;
     const customLowercase = document.getElementById('customLowercase').value;
     const customNumbers = document.getElementById('customNumbers').value;
     const customSpecial = document.getElementById('customSpecial').value;

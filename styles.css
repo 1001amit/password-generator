@@ -12,7 +12,6 @@ body {
     border-radius: 8px;
 }
 
-/* Dark theme */
 body.dark-theme {
     background-color: #121212;
     color: #ffffff;
@@ -22,10 +21,13 @@ body.dark-theme {
     background-color: #333333;
 }
 
-h1, h2 {
+h1 {
     text-align: center;
 }
 
+h2 {
+    text-align: justify;
+}
 .options {
     display: flex;
     flex-direction: column;
