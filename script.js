@@ -1,6 +1,8 @@
 document.getElementById('generateBtn').addEventListener('click', generatePassword);
 document.getElementById('copyBtn').addEventListener('click', copyToClipboard);
 
+let passwordHistory = [];
+
 function generatePassword() {
     const length = parseInt(document.getElementById('length').value);
     const includeUppercase = document.getElementById('uppercase').checked;
@@ -63,6 +65,7 @@ function generatePassword() {
 
     document.getElementById('result').value = password;
     updateStrengthMeter(password);
+    addToHistory(password);
 }
 
 function copyToClipboard() {
@@ -88,5 +91,27 @@ function updateStrengthMeter(password) {
     if (specialCriteria) strength++;
 
     strengthMeter.value = strength;
+}
+
+function addToHistory(password) {
+    passwordHistory.push(password);
+    const historyList = document.getElementById('historyList');
+    const listItem = document.createElement('li');
+    listItem.textContent = password;
+    const copyButton = document.createElement('button');
+    copyButton.textContent = 'Copy';
+    copyButton.addEventListener('click', () => copyPassword(password));
+    listItem.appendChild(copyButton);
+    historyList.appendChild(listItem);
+}
+
+function copyPassword(password) {
+    const tempInput = document.createElement('input');
+    tempInput.value = password;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+    alert('Password copied to clipboard');
 }
 

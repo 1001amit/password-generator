@@ -100,3 +100,35 @@ meter {
     padding: 5px;
     margin-bottom: 10px;
 }
+
+#historyContainer,
+#tipsContainer {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#historyContainer h2,
+#tipsContainer h2 {
+    margin-bottom: 10px;
+}
+
+#historyList,
+#tipsList {
+    list-style: none;
+    padding: 0;
+}
+
+#historyList li,
+#tipsList li {
+    background: #f9f9f9;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#historyList li button {
+    margin-left: 10px;
+}
