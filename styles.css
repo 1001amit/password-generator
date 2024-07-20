@@ -132,3 +132,123 @@ meter {
 #historyList li button {
     margin-left: 10px;
 }
+
+body {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.container {
+    background-color: #f9f9f9;
+}
+
+/* Dark theme */
+body.dark-theme {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.container.dark-theme {
+    background-color: #333333;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input[type="number"],
+input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#resultContainer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#result {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#strengthContainer {
+    margin-top: 20px;
+}
+
+.custom-sets {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.custom-sets label {
+    margin-top: 10px;
+}
+
+.custom-sets input {
+    width: calc(100% - 20px);
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.expiry-reminder {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.expiry-reminder label {
+    margin-top: 10px;
+}
+
+.expiry-reminder input {
+    width: calc(100% - 20px);
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+#historyContainer,
+#tipsContainer {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#historyContainer h2,
+#tipsContainer h2 {
+    margin-bottom: 10px;
+}
+
+#historyList,
+#tipsList {
+    list-style: none;
+    padding: 0;
+}
+
+#historyList li,
+#tipsList li {
+    background: #f9f9f9;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#historyList li button {
+    margin-left: 10px;
+}

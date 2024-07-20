@@ -1,5 +1,6 @@
 document.getElementById('generateBtn').addEventListener('click', generatePassword);
 document.getElementById('copyBtn').addEventListener('click', copyToClipboard);
+document.getElementById('themeSwitcher').addEventListener('click', switchTheme);
 
 let passwordHistory = [];
 
@@ -60,12 +61,12 @@ function generatePassword() {
         password += allChars[randomIndex];
     }
 
-    // Shuffle the password to ensure randomness
     password = password.split('').sort(() => Math.random() - 0.5).join('');
 
     document.getElementById('result').value = password;
     updateStrengthMeter(password);
     addToHistory(password);
+    setExpiryReminder(password);
 }
 
 function copyToClipboard() {
@@ -113,5 +114,31 @@ function copyPassword(password) {
     document.execCommand('copy');
     document.body.removeChild(tempInput);
     alert('Password copied to clipboard');
+}
+
+function switchTheme() {
+    document.body.classList.toggle('dark-theme');
+    document.querySelector('.container').classList.toggle('dark-theme');
+}
+
+function setExpiryReminder(password) {
+    const expiryDays = parseInt(document.getElementById('expiryDays').value);
+    if (isNaN(expiryDays) || expiryDays < 1) {
+        return;
+    }
+
+    const expiryDate = new Date();
+    expiryDate.setDate(expiryDate.getDate() + expiryDays);
+
+    const reminder = {
+        password,
+        expiryDate: expiryDate.toISOString()
+    };
+
+    const reminders = JSON.parse(localStorage.getItem('passwordReminders')) || [];
+    reminders.push(reminder);
+    localStorage.setItem('passwordReminders', JSON.stringify(reminders));
+
+    alert(`Password expiry reminder set for ${expiryDays} day(s).`);
 }
 

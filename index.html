@@ -9,6 +9,7 @@
 <body>
     <div class="container" role="main">
         <h1>Password Generator</h1>
+        <button id="themeSwitcher" aria-label="Switch Theme">Switch Theme</button>
         <form id="passwordForm">
             <label for="length">Password Length:</label>
             <input type="number" id="length" name="length" min="4" max="32" value="12" title="Select password length between 4 and 32" aria-label="Password Length">
@@ -32,6 +33,11 @@
                 
                 <label for="customSpecial">Custom Special Characters Set:</label>
                 <input type="text" id="customSpecial" placeholder="e.g. !@#$">
+            </div>
+
+            <div class="expiry-reminder">
+                <label for="expiryDays">Set Password Expiry (days):</label>
+                <input type="number" id="expiryDays" name="expiryDays" min="1" title="Set the number of days after which the password will expire" aria-label="Password Expiry Days">
             </div>
             
             <button type="button" id="generateBtn" aria-label="Generate Password">Generate Password</button>
