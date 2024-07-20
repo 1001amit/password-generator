@@ -1,6 +1,7 @@
 document.getElementById('generateBtn').addEventListener('click', generatePassword);
 document.getElementById('copyBtn').addEventListener('click', copyToClipboard);
 document.getElementById('themeSwitcher').addEventListener('click', switchTheme);
+document.getElementById('downloadHistoryBtn').addEventListener('click', downloadHistory);
 
 let passwordHistory = [];
 
@@ -16,52 +17,22 @@ function generatePassword() {
     const customNumbers = document.getElementById('customNumbers').value;
     const customSpecial = document.getElementById('customSpecial').value;
 
-    if (length < 4 || length > 32) {
-        alert('Password length must be between 4 and 32 characters.');
+    let charset = '';
+    if (includeUppercase) charset += customUppercase || 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    if (includeLowercase) charset += customLowercase || 'abcdefghijklmnopqrstuvwxyz';
+    if (includeNumbers) charset += customNumbers || '0123456789';
+    if (includeSpecial) charset += customSpecial || '!@#$%^&*()_+[]{}|;:,.<>?';
+
+    if (charset === '') {
+        alert('Please select at least one character set');
         return;
     }
 
-    const defaultUppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const defaultLowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
-    const defaultNumberChars = '0123456789';
-    const defaultSpecialChars = '!@#$%^&*()_+[]{}|;:,.<>?';
-
-    const uppercaseChars = customUppercase || defaultUppercaseChars;
-    const lowercaseChars = customLowercase || defaultLowercaseChars;
-    const numberChars = customNumbers || defaultNumberChars;
-    const specialChars = customSpecial || defaultSpecialChars;
-
-    let allChars = '';
     let password = '';
-
-    if (includeUppercase) {
-        allChars += uppercaseChars;
-        password += uppercaseChars[Math.floor(Math.random() * uppercaseChars.length)];
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * charset.length);
+        password += charset[randomIndex];
     }
-    if (includeLowercase) {
-        allChars += lowercaseChars;
-        password += lowercaseChars[Math.floor(Math.random() * lowercaseChars.length)];
-    }
-    if (includeNumbers) {
-        allChars += numberChars;
-        password += numberChars[Math.floor(Math.random() * numberChars.length)];
-    }
-    if (includeSpecial) {
-        allChars += specialChars;
-        password += specialChars[Math.floor(Math.random() * specialChars.length)];
-    }
-
-    if (allChars === '') {
-        alert('Please select at least one character type');
-        return;
-    }
-
-    for (let i = password.length; i < length; i++) {
-        const randomIndex = Math.floor(Math.random() * allChars.length);
-        password += allChars[randomIndex];
-    }
-
-    password = password.split('').sort(() => Math.random() - 0.5).join('');
 
     document.getElementById('result').value = password;
     updateStrengthMeter(password);
@@ -78,20 +49,53 @@ function copyToClipboard() {
 
 function updateStrengthMeter(password) {
     const strengthMeter = document.getElementById('strength');
+    const strengthFeedback = document.getElementById('strengthFeedback');
     let strength = 0;
+    let feedback = 'Your password should contain: ';
+
     const lengthCriteria = password.length >= 12;
     const uppercaseCriteria = /[A-Z]/.test(password);
     const lowercaseCriteria = /[a-z]/.test(password);
     const numberCriteria = /[0-9]/.test(password);
     const specialCriteria = /[!@#$%^&*()_+[\]{}|;:,.<>?]/.test(password);
 
-    if (lengthCriteria) strength++;
-    if (uppercaseCriteria) strength++;
-    if (lowercaseCriteria) strength++;
-    if (numberCriteria) strength++;
-    if (specialCriteria) strength++;
+    if (lengthCriteria) {
+        strength++;
+        feedback += '• At least 12 characters long. ';
+    } else {
+        feedback += '• More characters. ';
+    }
+
+    if (uppercaseCriteria) {
+        strength++;
+        feedback += '• Uppercase letters. ';
+    } else {
+        feedback += '• Uppercase letters. ';
+    }
+
+    if (lowercaseCriteria) {
+        strength++;
+        feedback += '• Lowercase letters. ';
+    } else {
+        feedback += '• Lowercase letters. ';
+    }
+
+    if (numberCriteria) {
+        strength++;
+        feedback += '• Numbers. ';
+    } else {
+        feedback += '• Numbers. ';
+    }
+
+    if (specialCriteria) {
+        strength++;
+        feedback += '• Special characters. ';
+    } else {
+        feedback += '• Special characters. ';
+    }
 
     strengthMeter.value = strength;
+    strengthFeedback.textContent = feedback;
 }
 
 function addToHistory(password) {
@@ -142,3 +146,14 @@ function setExpiryReminder(password) {
     alert(`Password expiry reminder set for ${expiryDays} day(s).`);
 }
 
+function downloadHistory() {
+    const historyText = passwordHistory.join('\n');
+    const blob = new Blob([historyText], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'password_history.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}

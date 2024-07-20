@@ -49,10 +49,12 @@
         <div id="strengthContainer">
             <label for="strength">Password Strength:</label>
             <meter id="strength" min="0" max="5" value="0" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" aria-label="Password Strength"></meter>
+            <p id="strengthFeedback"></p>
         </div>
         <div id="historyContainer">
             <h2>Password History</h2>
             <ul id="historyList"></ul>
+            <button id="downloadHistoryBtn">Download History</button>
         </div>
         <div id="tipsContainer">
             <h2>Password Tips</h2>
@@ -63,9 +65,9 @@
                 <li>Use unique passwords for different accounts to minimize risk.</li>
                 <li>Consider using a password manager to keep track of your passwords securely.</li>
             </ul>
+            <p id="dynamicTips"></p>
         </div>
     </div>
     <script src="script.js"></script>
 </body>
 </html>
-

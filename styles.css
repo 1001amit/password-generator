@@ -1,145 +1,15 @@
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background: #f0f0f0;
-}
-
-.container {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 300px;
-}
-
-h1 {
-    margin-bottom: 20px;
-}
-
-form {
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    margin: 10px 0;
-}
-
-.options label {
-    display: flex;
-    align-items: center;
-    margin: 5px 0;
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
-    background: #007bff;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.5s ease;
-}
-
-button:hover {
-    background: #0056b3;
-}
-
-button:disabled {
-    background: #ccc;
-}
-
-#resultContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#result {
-    width: 180px;
-    padding: 5px;
-    margin-right: 10px;
-}
-
-input[type="number"]:focus,
-input[type="text"]:focus {
-    outline: none;
-    border: 2px solid #007bff;
-}
-
-.options label input {
-    margin-right: 10px;
-}
-
-#strengthContainer {
-    margin-top: 20px;
-    text-align: center;
-}
-
-meter {
-    width: 100%;
-    height: 20px;
-}
-
-.custom-sets {
-    margin-top: 20px;
-    text-align: left;
-}
-
-.custom-sets label {
-    margin-top: 10px;
-}
-
-.custom-sets input {
-    width: calc(100% - 20px);
-    padding: 5px;
-    margin-bottom: 10px;
-}
-
-#historyContainer,
-#tipsContainer {
-    margin-top: 20px;
-    text-align: left;
-}
-
-#historyContainer h2,
-#tipsContainer h2 {
-    margin-bottom: 10px;
-}
-
-#historyList,
-#tipsList {
-    list-style: none;
-    padding: 0;
-}
-
-#historyList li,
-#tipsList li {
-    background: #f9f9f9;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#historyList li button {
-    margin-left: 10px;
-}
-
-body {
     background-color: #ffffff;
     color: #000000;
 }
 
 .container {
     background-color: #f9f9f9;
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 /* Dark theme */
@@ -150,6 +20,10 @@ body.dark-theme {
 
 .container.dark-theme {
     background-color: #333333;
+}
+
+h1, h2 {
+    text-align: center;
 }
 
 .options {
@@ -172,6 +46,15 @@ input[type="text"] {
 button {
     padding: 10px 20px;
     cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+button:hover {
+    background-color: #0056b3;
 }
 
 #resultContainer {
@@ -185,10 +68,18 @@ button {
     width: 80%;
     padding: 10px;
     font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 #strengthContainer {
     margin-top: 20px;
+    text-align: center;
+}
+
+#strengthFeedback {
+    margin-top: 10px;
+    font-weight: bold;
 }
 
 .custom-sets {
