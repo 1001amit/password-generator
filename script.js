@@ -8,15 +8,25 @@ function generatePassword() {
     const includeNumbers = document.getElementById('numbers').checked;
     const includeSpecial = document.getElementById('special').checked;
 
+    const customUppercase = document.getElementById('customUppercase').value;
+    const customLowercase = document.getElementById('customLowercase').value;
+    const customNumbers = document.getElementById('customNumbers').value;
+    const customSpecial = document.getElementById('customSpecial').value;
+
     if (length < 4 || length > 32) {
         alert('Password length must be between 4 and 32 characters.');
         return;
     }
 
-    const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
-    const numberChars = '0123456789';
-    const specialChars = '!@#$%^&*()_+[]{}|;:,.<>?';
+    const defaultUppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const defaultLowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+    const defaultNumberChars = '0123456789';
+    const defaultSpecialChars = '!@#$%^&*()_+[]{}|;:,.<>?';
+
+    const uppercaseChars = customUppercase || defaultUppercaseChars;
+    const lowercaseChars = customLowercase || defaultLowercaseChars;
+    const numberChars = customNumbers || defaultNumberChars;
+    const specialChars = customSpecial || defaultSpecialChars;
 
     let allChars = '';
     let password = '';

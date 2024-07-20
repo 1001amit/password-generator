@@ -86,3 +86,17 @@ meter {
     height: 20px;
 }
 
+.custom-sets {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.custom-sets label {
+    margin-top: 10px;
+}
+
+.custom-sets input {
+    width: calc(100% - 20px);
+    padding: 5px;
+    margin-bottom: 10px;
+}
